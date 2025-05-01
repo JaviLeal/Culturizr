@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./",
+      "outDir": "./out-tsc",
+      "sourceMap": true,
+      "moduleResolution": "node",
+      "module": "es2020",
+      "target": "es2015",
+      "lib": ["es2018", "dom"],
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,  // Habilitar la consistencia en los nombres de archivo
+      "strict": true  // Habilitar el modo estricto
+    },
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  }
+  
