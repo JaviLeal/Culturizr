@@ -1,3 +1,44 @@
-<h2>Login o Registro</h2>
-<app-login></app-login>
-<app-register></app-register>
+<div class="auth-container">
+  <h2>Culturízate!</h2>
+
+  <div class="button-container">
+    <button (click)="showLogin = true" [class.active]="showLogin">Iniciar sesión</button>
+    <button (click)="showLogin = false" [class.active]="!showLogin">Registrarse</button>
+  </div>
+
+  <div class="form-container">
+    <!-- Formulario de Login -->
+    <form *ngIf="showLogin" (ngSubmit)="login()">
+      <div>
+        <label for="login-email">Correo:</label>
+        <input type="email" id="login-email" [(ngModel)]="email" name="email" required placeholder="ejemplo@gmail.com"/>
+      </div>
+      <div>
+        <label for="login-password">Contraseña:</label>
+        <input type="password" id="login-password" [(ngModel)]="password" name="password" required placeholder="*****************"/>
+      </div>
+      <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <!-- Formulario de Registro -->
+    <form *ngIf="!showLogin" (ngSubmit)="register()">
+      <div>
+        <label for="register-username">Username:</label>
+        <input type="text" id="register-username" [(ngModel)]="username" name="username" required placeholder="SoyUnMakina123" />
+      </div>
+      <div>
+        <label for="register-email">Correo:</label>
+        <input type="email" id="register-email" [(ngModel)]="email" name="email" required placeholder="ejemplo@gmail.com" />
+      </div>
+      <div>
+        <label for="register-password">Contraseña:</label>
+        <input type="password" id="register-password" [(ngModel)]="password" name="password" required placeholder="*****************" />
+      </div>
+      <button type="submit">Registrarse</button>
+    </form>
+  </div>
+
+  <!-- Mensajes de error y éxito -->
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+</div>

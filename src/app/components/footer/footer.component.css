@@ -1,0 +1,10 @@
+/* === FOOTER === */
+footer {
+  background-color: var(--bg-color);
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted-text);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}

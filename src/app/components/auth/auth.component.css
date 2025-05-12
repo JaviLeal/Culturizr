@@ -1,0 +1,57 @@
+/* Alineamos los botones */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.active {
+  background-color: #0056b3;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Contenedor de los formularios */
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Opcional: añadir animación de transición */
+app-login, app-register {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

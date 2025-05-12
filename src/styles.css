@@ -1,0 +1,224 @@
+/* === RESET Y FUENTE BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #f7f9fb;
+  color: #333;
+  line-height: 1.6;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === CONTENEDOR GENERAL === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* === CÓDIGO PARA LOS FORMULARIOS === */
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-form {
+  position: sticky;
+  top: 6rem; /* Asegura que el formulario no se superponga al header */
+  z-index: 10;
+  margin-top: 0;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fafafa;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #00796b;
+  outline: none;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #555;
+}
+
+/* === BOTONES === */
+button {
+  padding: 0.75rem 1.5rem;
+  background-color: #00796b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005f56;
+}
+
+button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* === MENSAJES DE EXITO Y ERROR === */
+.success {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: #c62828;
+  background-color: #fdecea;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+/* === ESTILOS DE LINK === */
+a {
+  color: #00796b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* === SECCIÓN PRINCIPAL Y TEXTOS === */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+h1, h2, h3 {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* === SECCIÓN DE TARJETAS O BLOQUES DE CONTENIDO === */
+.card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* === RESPONSIVO PARA MÓVILES Y TABLETS === */
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  form {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* === LOADER (CUANDO ESTÁ CARGANDO UNA PETICIÓN) === */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #00796b;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

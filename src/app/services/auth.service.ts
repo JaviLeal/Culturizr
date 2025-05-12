@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'http://localhost/culturizer-api/';
+  private apiUrl = 'http://localhost/culturizer-api/';
 
   constructor(private http: HttpClient) {}
 
-  login(data: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}?route=login`, data);
-  }
+login(email: string, password: string): Observable<any> {
+  return this.http.post(`${this.apiUrl}?route=login`, { email, password });
+}
 
-  register(data: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}?route=register`, data);
-  }
+register(username: string, email: string, password: string): Observable<any> {
+  return this.http.post(`${this.apiUrl}?route=register`, { username, email, password });
+}
+
 }

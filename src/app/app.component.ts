@@ -1,26 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { QuestionService, Question } from './services/question.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h2>Preguntas</h2>
-    <ul *ngIf="questions">
-      <li *ngFor="let q of questions">
-        {{ q.question_text }}
-      </li>
-    </ul>
-  `
+  templateUrl: './app.component.html', 
+
 })
-export class AppComponent implements OnInit {
-  questions: Question[] = [];
-
-  constructor(private questionService: QuestionService) {}
-
-  ngOnInit(): void {
-    this.questionService.getQuestions().subscribe((data) => {
-      console.log('Preguntas recibidas:', data);  // Esto te ayudará a verificar que recibes todos los datos
-      this.questions = data;
-    });
-  }
-}
+export class AppComponent {}

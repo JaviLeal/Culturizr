@@ -3,20 +3,26 @@ import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
 })
 export class LoginComponent {
   email = '';
   password = '';
 
+  errorMessage = '';
+  successMessage = '';
+
   constructor(private authService: AuthService) {}
 
-  login() {
-    this.authService.login({ email: this.email, password: this.password }).subscribe(response => {
-      console.log('Login OK', response);
-      // Redirige si quieres: this.router.navigate(['/questions']);
-    }, err => {
-      console.error('Error en login', err);
-    });
-  }
+login() {
+  this.authService.login(this.email, this.password).subscribe({
+    next: (response) => {
+      console.log('Login successful', response);
+    },
+    error: (err) => {
+      console.error('Login error', err);
+    }
+  });
+}
+
 }
