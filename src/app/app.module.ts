@@ -10,6 +10,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RankingComponent } from './components/ranking/ranking.component';
+import { AboutComponent } from './components/about/about.component';
+import { DoubtsComponent } from './components/doubts/doubts.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RankingComponent,
+    AboutComponent,
+    DoubtsComponent
   ],
   imports: [
     BrowserModule,

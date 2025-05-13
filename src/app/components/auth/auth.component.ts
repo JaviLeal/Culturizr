@@ -17,7 +17,7 @@ export class AuthComponent {
   constructor(private authService: AuthService) {} // Inyectamos el servicio en el constructor
 
   login() {
-    if (this.username && this.email && this.password) {
+    if (this.email && this.password) {
       this.authService.login( this.email, this.password).subscribe(
         (response) => {
           // Aquí manejamos la respuesta del backend, por ejemplo, el login exitoso
@@ -31,7 +31,7 @@ export class AuthComponent {
         }
       );
     } else {
-      this.errorMessage = 'Por favor, ingrese usuario, correo y contraseña';
+      this.errorMessage = 'Por favor, ingrese correo y contraseña';
       this.successMessage = ''; // Limpiamos cualquier mensaje de éxito
     }
   }

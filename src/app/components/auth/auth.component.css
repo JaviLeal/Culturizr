@@ -5,7 +5,7 @@
   align-items: center;
   padding: 2rem;
   justify-content: center;
-  height: 80vh;
+  height: 85vh;
   text-align: center;
 }
 
@@ -19,18 +19,18 @@ button {
   padding: 0.5rem 2rem;
   font-size: 1rem;
   border: none;
-  background-color: #007bff;
+  background-color: #00796b;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 button.active {
-  background-color: #0056b3;
+  background-color: #00796b;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #00796b;
 }
 
 /* Contenedor de los formularios */

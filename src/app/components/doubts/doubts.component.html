@@ -1,0 +1,17 @@
+<div class="doubts-container">
+  <h2>¿Tienes alguna duda?</h2>
+  <p>Estamos aquí para ayudarte. Rellena el siguiente formulario y te responderemos lo antes posible.</p>
+
+  <form (submit)="enviarDuda()" class="dudas-form">
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" [(ngModel)]="email" name="email" required>
+
+    <label for="mensaje">Mensaje</label>
+    <textarea id="mensaje" rows="5" [(ngModel)]="mensaje" name="mensaje" required></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
+</div>

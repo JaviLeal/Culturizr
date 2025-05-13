@@ -1,0 +1,53 @@
+.doubts-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.doubts-container h2 {
+  margin-bottom: 0.5rem;
+  color: #00796b;
+  text-align: center;
+}
+
+.doubts-container p {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #555;
+}
+
+.doubts-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.doubts-form input,
+.doubts-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.doubts-form button {
+  background-color: #00796b;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.doubts-form button:hover {
+  background-color: #005f56;
+}

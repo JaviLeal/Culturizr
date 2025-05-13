@@ -222,3 +222,42 @@ p {
   100% { transform: rotate(360deg); }
 }
 
+/* Resetea el body y html para altura total */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* HEADER fijo arriba */
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Ajusta según el alto real */
+  background: #fff; /* Asegura fondo si hay scroll */
+  z-index: 1000;
+}
+
+/* FOOTER fijo abajo */
+app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Ajusta según el alto real */
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+/* Contenido principal entre el header y footer */
+.main-content {
+  padding-top: 60px;   /* Igual a la altura del header */
+  padding-bottom: 60px; /* Igual a la altura del footer */
+  overflow-y: auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
