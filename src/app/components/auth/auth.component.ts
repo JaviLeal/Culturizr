@@ -26,7 +26,7 @@ export class AuthComponent {
         },
         (error) => {
           // Si hay un error en el login, mostramos el mensaje de error
-          this.errorMessage = 'Error al iniciar sesión: ' + error.message;
+          this.errorMessage = 'Error al iniciar sesión: ';
           this.successMessage = ''; // Limpiamos el mensaje de éxito
         }
       );
@@ -46,7 +46,7 @@ export class AuthComponent {
         },
         (error) => {
           // Si hay un error en el registro, mostramos el mensaje de error
-          this.errorMessage = 'Error al registrar usuario: ' + error.message;
+          this.errorMessage = 'Error al registrar usuario: ';
           this.successMessage = ''; // Limpiamos el mensaje de éxito
         }
       );

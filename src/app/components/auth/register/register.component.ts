@@ -23,7 +23,7 @@ export class RegisterComponent {
     },
     error: (err) => {
       console.error('Registration error', err);
-      this.errorMessage = err.error.message || 'Error en el registro';
+      this.errorMessage = 'Error en el registro';
       this.successMessage = '';
     }
   });

@@ -1,53 +1,70 @@
-.doubts-container {
+.doubt-container {
   max-width: 600px;
   margin: 3rem auto;
-  background-color: #ffffff;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.doubts-container h2 {
-  margin-bottom: 0.5rem;
-  color: #00796b;
-  text-align: center;
-}
-
-.doubts-container p {
-  margin-bottom: 2rem;
-  text-align: center;
-  color: #555;
-}
-
-.doubts-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #444;
-}
-
-.doubts-form input,
-.doubts-form textarea {
-  width: 100%;
-  padding: 0.8rem;
+.doubt-container h2 {
   margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+form label {
+  font-weight: 600;
+  color: #555;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 8px;
+  margin-bottom: 1.2rem;
   font-size: 1rem;
 }
 
-.doubts-form button {
-  background-color: #00796b;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
+form textarea {
+  resize: vertical;
+  min-height: 120px;
 }
 
-.doubts-form button:hover {
+button {
+  background-color: #00796b;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
   background-color: #005f56;
+}
+
+.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.error {
+  background-color: #fdecea;
+  color: #c62828;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  text-align: center;
 }

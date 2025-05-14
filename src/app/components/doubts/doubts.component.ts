@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { DoubtService, Doubt } from 'src/app/services/doubt.service';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-doubts',
@@ -7,17 +10,29 @@ import { Component } from '@angular/core';
 })
 export class DoubtsComponent {
 
- nombre = '';
-  email = '';
-  mensaje = '';
+ doubt: Doubt = {
+    name: '',
+    email: '',
+    message: ''
+  };
 
-  enviarDuda() {
-    console.log('Duda enviada:', { nombre: this.nombre, email: this.email, mensaje: this.mensaje });
-    alert('Tu mensaje se ha enviado correctamente. ¡Muchas gracias!');
-    
-    // Limpiar campos
-    this.nombre = '';
-    this.email = '';
-    this.mensaje = '';
-  }
+  successMessage = '';
+  errorMessage = '';
+
+  constructor(private doubtService: DoubtService) {}
+
+  submitDoubt(form: NgForm) {
+  this.doubtService.submitDoubt(this.doubt).subscribe({
+    next: (res) => {
+      this.successMessage = 'Duda enviada con éxito.';
+      this.errorMessage = '';
+      form.resetForm();  
+    },
+    error: (err) => {
+      this.errorMessage = 'Error al enviar la duda.';
+      this.successMessage = '';
+    }
+  });
+}
+
 }

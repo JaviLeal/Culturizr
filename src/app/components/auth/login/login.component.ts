@@ -22,7 +22,7 @@ login() {
     },
     error: (err) => {
       console.error('Login error', err);
-      this.errorMessage = err.error.message || 'Error en el logueo';
+      this.errorMessage = 'Error en el logueo';
       this.successMessage = '';
     }
   });

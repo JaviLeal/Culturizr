@@ -1,17 +1,59 @@
-<div class="doubts-container">
-  <h2>¿Tienes alguna duda?</h2>
-  <p>Estamos aquí para ayudarte. Rellena el siguiente formulario y te responderemos lo antes posible.</p>
+<div class="doubt-container">
+  <h2>¿Tienes alguna recomendación o duda?</h2>
+  <form #form="ngForm" (ngSubmit)="submitDoubt(form)">
 
-  <form (submit)="enviarDuda()" class="dudas-form">
-    <label for="nombre">Nombre</label>
-    <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" required>
+    <!-- Nombre -->
+    <label for="name">Nombre</label>
+    <input
+      id="name"
+      name="name"
+      [(ngModel)]="doubt.name"
+      required
+      minlength="2"
+      maxlength="50"
+      #name="ngModel"
+    />
+    <div *ngIf="name.invalid && name.touched" class="error">
+      <div *ngIf="name.errors?.['required']">El nombre es obligatorio.</div>
+      <div *ngIf="name.errors?.['minlength']">Mínimo 2 caracteres.</div>
+      <div *ngIf="name.errors?.['maxlength']">Máximo 50 caracteres.</div>
+    </div>
 
+    <!-- Email -->
     <label for="email">Correo electrónico</label>
-    <input type="email" id="email" [(ngModel)]="email" name="email" required>
+    <input
+      id="email"
+      name="email"
+      [(ngModel)]="doubt.email"
+      required
+      email
+      #email="ngModel"
+    />
+    <div *ngIf="email.invalid && email.touched" class="error">
+      <div *ngIf="email.errors?.['required']">El email es obligatorio.</div>
+      <div *ngIf="email.errors?.['email']">El formato del email no es válido.</div>
+    </div>
 
-    <label for="mensaje">Mensaje</label>
-    <textarea id="mensaje" rows="5" [(ngModel)]="mensaje" name="mensaje" required></textarea>
+    <!-- Mensaje -->
+    <label for="message">Mensaje</label>
+    <textarea
+      id="message"
+      name="message"
+      [(ngModel)]="doubt.message"
+      required
+      minlength="10"
+      maxlength="500"
+      #message="ngModel"
+    ></textarea>
+    <div *ngIf="message.invalid && message.touched" class="error">
+      <div *ngIf="message.errors?.['required']">El mensaje es obligatorio.</div>
+      <div *ngIf="message.errors?.['minlength']">Mínimo 10 caracteres.</div>
+      <div *ngIf="message.errors?.['maxlength']">Máximo 500 caracteres.</div>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
   </form>
+
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 </div>
