@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { AboutComponent } from './components/about/about.component';
 import { DoubtsComponent } from './components/doubts/doubts.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,14 @@ import { DoubtsComponent } from './components/doubts/doubts.component';
     FooterComponent,
     RankingComponent,
     AboutComponent,
-    DoubtsComponent
+    DoubtsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

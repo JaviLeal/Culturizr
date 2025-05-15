@@ -1,0 +1,82 @@
+.home-container {
+  max-width: 1500px;
+  margin: 3rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0 1rem;
+  text-align: center;
+  color: #004d40;
+}
+
+.home-container h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #00796b;
+  text-shadow: 1px 1px 3px rgba(0, 121, 107, 0.4);
+}
+
+.game-modes {
+  display: flex;
+  flex-wrap: nowrap; /* todo en una sola fila */
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 10px;
+  overflow-x: hidden; /* quitar scroll horizontal */
+}
+
+.mode-block {
+  background: #e0f2f1;
+  border-radius: 14px;
+  padding: 1.5rem 1rem;
+  color: #004d40;
+  box-shadow: 0 6px 15px rgba(0, 121, 107, 0.2);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+
+  flex: 0 0 260px; /* tamaño fijo más pequeño para que entren todos */
+  max-width: 260px;
+}
+
+
+.mode-block .icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.2rem;
+  transition: transform 0.25s ease;
+}
+
+.mode-block:hover,
+.mode-block:focus {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 40px rgba(0, 121, 107, 0.4);
+  background-color: #b2dfdb;
+}
+
+.mode-block:hover .icon,
+.mode-block:focus .icon {
+  transform: scale(1.2);
+}
+
+.mode-block:active {
+  transform: translateY(-6px) scale(0.95);
+  box-shadow: 0 10px 25px rgba(0, 121, 107, 0.3);
+}
+
+.mode-block h2 {
+  font-size: 1.9rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.mode-block p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0;
+  max-width: 280px;
+}
