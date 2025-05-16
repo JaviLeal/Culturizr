@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -14,45 +15,42 @@ export class AuthComponent {
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private authService: AuthService) {} // Inyectamos el servicio en el constructor
+  constructor(private authService: AuthService, private router: Router) {} // Inyectamos el servicio en el constructor
 
-  login() {
-    if (this.email && this.password) {
-      this.authService.login( this.email, this.password).subscribe(
-        (response) => {
-          // Aquí manejamos la respuesta del backend, por ejemplo, el login exitoso
-          this.successMessage = 'Inicio de sesión exitoso';
-          this.errorMessage = ''; // Limpiamos el mensaje de error
-        },
-        (error) => {
-          // Si hay un error en el login, mostramos el mensaje de error
-          this.errorMessage = 'Error al iniciar sesión: ';
-          this.successMessage = ''; // Limpiamos el mensaje de éxito
-        }
-      );
-    } else {
-      this.errorMessage = 'Por favor, ingrese correo y contraseña';
-      this.successMessage = ''; // Limpiamos cualquier mensaje de éxito
+login() {
+  this.authService.login(this.email, this.password).subscribe({
+    next: (response) => {
+      console.log('Login successful', response);
+      this.successMessage = 'Logueo exitoso';
+      this.errorMessage = '';
+      // Guarda estado
+      localStorage.setItem('user', JSON.stringify(response.user));
+      console.log('Redirigiendo a home');
+      this.router.navigate(['/home']); // Redirección
+    },
+    error: (err) => {
+      console.error('Login error', err);
+      this.errorMessage = 'Error en el logueo';
+      this.successMessage = '';
     }
+  });
   }
-
-  register() {
-    if (this.username && this.email && this.password) {
-      this.authService.register(this.username, this.email, this.password).subscribe(
-        (response) => {
-          // Aquí manejamos la respuesta del backend, por ejemplo, registro exitoso
-          this.successMessage = 'Registro exitoso';
-          this.errorMessage = ''; // Limpiamos el mensaje de error
-        },
-        (error) => {
-          // Si hay un error en el registro, mostramos el mensaje de error
-          this.errorMessage = 'Error al registrar usuario: ';
-          this.successMessage = ''; // Limpiamos el mensaje de éxito
-        }
-      );
-    } else {
-      this.errorMessage = 'Por favor, ingrese usuario, correo y contraseña';
-      this.successMessage = ''; // Limpiamos cualquier mensaje de éxito
+   register() {
+  this.authService.register(this.username, this.email, this.password).subscribe({
+    next: (response) => {
+      console.log('Registration successful', response);
+      this.successMessage = 'Registro exitoso';
+      this.errorMessage = '';
+       // Guarda estado
+      localStorage.setItem('user', JSON.stringify(response.user));
+      console.log('Redirigiendo a home');
+      this.router.navigate(['/home']); // Redirección
+    },
+    error: (err) => {
+      console.error('Registration error', err);
+      this.errorMessage = 'Error en el registro';
+      this.successMessage = '';
     }
+  });
   }
 }

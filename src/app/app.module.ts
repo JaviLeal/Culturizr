@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { QuestionComponent } from './components/question/question.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RankingComponent } from './components/ranking/ranking.component';
@@ -20,8 +18,6 @@ import { HomeComponent } from './components/home/home.component';
     AppComponent,
     QuestionComponent,
     AuthComponent,
-    LoginComponent,
-    RegisterComponent,
     HeaderComponent,
     FooterComponent,
     RankingComponent,

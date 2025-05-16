@@ -8,33 +8,83 @@
 
   <div class="form-container">
     <!-- Formulario de Login -->
-    <form *ngIf="showLogin" (ngSubmit)="login()">
+    <form *ngIf="showLogin" #loginForm="ngForm" (ngSubmit)="login()" novalidate>
       <div>
         <label for="login-email">Correo:</label>
-        <input type="email" id="login-email" [(ngModel)]="email" name="email" required placeholder="ejemplo@gmail.com"/>
+        <input
+          type="email"
+          id="login-email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          email
+          #loginEmail="ngModel"
+          placeholder="ejemplo@gmail.com" />
+        <p class="error" *ngIf="loginEmail.invalid && loginEmail.touched">Correo inválido</p>
       </div>
+
       <div>
         <label for="login-password">Contraseña:</label>
-        <input type="password" id="login-password" [(ngModel)]="password" name="password" required placeholder="*****************"/>
+        <input
+          type="password"
+          id="login-password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          minlength="6"
+          #loginPassword="ngModel"
+          placeholder="●●●●●●●●●●●" />
+        <p class="error" *ngIf="loginPassword.invalid && loginPassword.touched">La contraseña debe tener al menos 6 caracteres</p>
       </div>
-      <button type="submit">Iniciar sesión</button>
+
+      <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
     </form>
 
     <!-- Formulario de Registro -->
-    <form *ngIf="!showLogin" (ngSubmit)="register()">
+    <form *ngIf="!showLogin" #registerForm="ngForm" (ngSubmit)="register()" novalidate>
       <div>
         <label for="register-username">Username:</label>
-        <input type="text" id="register-username" [(ngModel)]="username" name="username" required placeholder="SoyUnMakina123" />
+        <input
+          type="text"
+          id="register-username"
+          [(ngModel)]="username"
+          name="username"
+          required
+          minlength="3"
+          #registerUsername="ngModel"
+          placeholder="SoyUnMakina123" />
+        <p class="error" *ngIf="registerUsername.invalid && registerUsername.touched">El nombre de usuario debe tener al menos 3 caracteres</p>
       </div>
+
       <div>
         <label for="register-email">Correo:</label>
-        <input type="email" id="register-email" [(ngModel)]="email" name="email" required placeholder="ejemplo@gmail.com" />
+        <input
+          type="email"
+          id="register-email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          email
+          #registerEmail="ngModel"
+          placeholder="ejemplo@gmail.com" />
+        <p class="error" *ngIf="registerEmail.invalid && registerEmail.touched">Correo inválido</p>
       </div>
+
       <div>
         <label for="register-password">Contraseña:</label>
-        <input type="password" id="register-password" [(ngModel)]="password" name="password" required placeholder="*****************" />
+        <input
+          type="password"
+          id="register-password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          minlength="6"
+          #registerPassword="ngModel"
+          placeholder="●●●●●●●●●●●" />
+        <p class="error" *ngIf="registerPassword.invalid && registerPassword.touched">La contraseña debe tener al menos 6 caracteres</p>
       </div>
-      <button type="submit">Registrarse</button>
+
+      <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
     </form>
   </div>
 
