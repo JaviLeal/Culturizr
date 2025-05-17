@@ -19,8 +19,9 @@
   display: flex;
   flex-wrap: nowrap; /* todo en una sola fila */
   justify-content: center;
-  gap: 20px;
-  padding-bottom: 10px;
+  gap: 25px;
+  padding-bottom: 5px;
+  padding-top: 12px;
   overflow-x: hidden; /* quitar scroll horizontal */
 }
 
@@ -41,7 +42,6 @@
   flex: 0 0 260px; /* tamaño fijo más pequeño para que entren todos */
   max-width: 260px;
 }
-
 
 .mode-block .icon {
   font-size: 3.5rem;

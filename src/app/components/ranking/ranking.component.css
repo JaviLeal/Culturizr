@@ -1,9 +1,29 @@
 .ranking-container {
+  max-width: 800px;
+  margin: 4rem auto;
   padding: 2rem;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin: 2rem auto;
-  max-width: 600px;
+  background-color: #e0f2f1; /* fondo suave en tono verde claro */
+  border: 2px solid #b2dfdb;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: #004d40;
+}
+
+.ranking-container h2 {
+  font-size: 2.2rem;
+  color: #00796b;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  border-bottom: 3px solid #00796b;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.ranking-container p {
+  font-size: 1.1rem;
+  color: #004d40;
+  margin-top: 1rem;
+  line-height: 1.6;
 }

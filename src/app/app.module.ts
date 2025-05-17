@@ -12,6 +12,10 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { AboutComponent } from './components/about/about.component';
 import { DoubtsComponent } from './components/doubts/doubts.component';
 import { HomeComponent } from './components/home/home.component';
+import { ChronometerComponent } from './components/game_modes/chronometer/chronometer.component';
+import { ClassicComponent } from './components/game_modes/classic/classic.component';
+import { OneThemeComponent } from './components/game_modes/one-theme/one-theme.component';
+import { ExtremeComponent } from './components/game_modes/extreme/extreme.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { HomeComponent } from './components/home/home.component';
     RankingComponent,
     AboutComponent,
     DoubtsComponent,
-    HomeComponent
+    HomeComponent,
+    ChronometerComponent,
+    ClassicComponent,
+    OneThemeComponent,
+    ExtremeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,13 @@
 <header class="header">
-  <h1>Culturizer</h1>
+  <div class="logo-container">
+    <img src="assets/img/Logo.png" alt="Logo de Culturizer" class="logo" />
+    <h1>Culturizer</h1>
+  </div>
   <nav>
-    <a routerLink="/home">Inicio</a>
-    <a routerLink="/doubts">Dudas/Recomendaciones</a>
-    <a routerLink="/ranking">Ranking</a>
-    <a routerLink="/about">Acerca de Nosotros</a>
+    <a routerLink="/home" routerLinkActive="active">Inicio</a>
+    <a routerLink="/doubts" routerLinkActive="active">Dudas/Recomendaciones</a>
+    <a routerLink="/ranking" routerLinkActive="active">Ranking</a>
+    <a routerLink="/about" routerLinkActive="active">Acerca de Nosotros</a>
     <a href="#" (click)="confirmLogout($event)">Cerrar sesión</a>
-
   </nav>
 </header>

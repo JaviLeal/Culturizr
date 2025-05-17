@@ -117,10 +117,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 /* === SECCIÓN PRINCIPAL Y TEXTOS === */
 main {
   flex: 1;
@@ -261,3 +257,9 @@ app-footer {
   min-height: 100vh;
   box-sizing: border-box;
 }
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+

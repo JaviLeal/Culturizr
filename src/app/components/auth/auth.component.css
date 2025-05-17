@@ -1,57 +1,113 @@
-/* Alineamos los botones */
 .auth-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  justify-content: center;
-  height: 85vh;
+  max-width: 500px;
+  margin: -2px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.auth-container h2 {
   text-align: center;
+  font-size: 2rem;
+  color: #00796b;
+  margin-bottom: 30px;
 }
 
 .button-container {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 10px;
 }
 
-button {
-  padding: 0.5rem 2rem;
-  font-size: 1rem;
-  border: none;
+.button-container button {
+  padding: 10px 20px;
+  border: 2px solid #00796b;
+  background: transparent;
+  color: #00796b;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-container button.active,
+.button-container button:hover {
   background-color: #00796b;
   color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-button.active {
-  background-color: #00796b;
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-button:hover {
-  background-color: #00796b;
+label {
+  font-weight: bold;
+  color: #004d40;
+  margin-bottom: 5px;
 }
 
-/* Contenedor de los formularios */
-.form-container {
+input {
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #b2dfdb;
+  background-color: #f9f9f9;
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Opcional: añadir animación de transición */
-app-login, app-register {
-  animation: fadeIn 0.5s ease-in-out;
+input:focus {
+  outline: none;
+  border-color: #00796b;
+  box-shadow: 0 0 0 2px #b2dfdb;
+  background: #ffffff;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+button[type="submit"] {
+  background: #00796b;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #009688;
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: #2e7d32;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 30px 20px;
   }
 }
