@@ -15,7 +15,7 @@ export class AuthComponent {
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {} // Inyectamos el servicio en el constructor
+  constructor(private authService: AuthService, private router: Router) {}
 
 login() {
   this.authService.login(this.email, this.password).subscribe({

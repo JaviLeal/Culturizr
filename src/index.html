@@ -9,7 +9,34 @@
 </head>
 
 <body>
-    <app-root></app-root> 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('toggle-dark-mode');
+            const root = document.documentElement;
+
+            function updateButton() {
+                const isDark = root.classList.contains('dark-mode');
+                toggleButton.textContent = isDark ? '☀️ Modo claro' : '🌙 Modo oscuro';
+            }
+
+            toggleButton.addEventListener('click', () => {
+                root.classList.toggle('dark-mode');
+                updateButton();
+                // Guarda preferencia en localStorage
+                localStorage.setItem('theme', root.classList.contains('dark-mode') ? 'dark' : 'light');
+            });
+
+            // Al cargar la página, revisa si había una preferencia guardada
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                root.classList.add('dark-mode');
+            }
+            updateButton();
+        });
+
+    </script>
+
+    <app-root></app-root>
 </body>
 
 </html>

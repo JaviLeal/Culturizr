@@ -8,7 +8,30 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-   constructor(private router: Router) {}
+  constructor(private router: Router) { }
+
+  ngAfterViewInit() {
+    const btn = document.getElementById('toggle-dark-mode');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        btn.textContent = isDark ? '☀️ Modo claro' : '🌙 Modo oscuro';
+      });
+    }
+  }
+
+  ngOnInit() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+
+    const btn = document.getElementById('toggle-dark-mode');
+    if (btn) {
+      btn.textContent = savedTheme === 'dark' ? '☀️ Modo claro' : '🌙 Modo oscuro';
+    }
+  }
 
   confirmLogout(event: Event) {
     event.preventDefault(); // evita navegación automática
@@ -16,6 +39,7 @@ export class HeaderComponent {
     const confirmed = confirm('¿Seguro que quieres cerrar sesión?');
     if (confirmed) {
       this.logout();
+      console.log("Sesión cerrada");
     }
   }
 

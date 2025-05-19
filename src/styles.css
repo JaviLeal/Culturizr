@@ -1,3 +1,36 @@
+:root,
+.dark-mode {
+  transition: background-color 1s ease, color 1s ease, box-shadow 1s ease;
+}
+
+body, .card, header, footer, button, input, textarea, select {
+  transition: background-color 1s ease, color 1s ease, box-shadow 1s ease;
+}
+
+:root {
+  /* Modo claro */
+  --primary-color: #2c3e50;
+  --secondary-color: #ecf0f1;
+  --accent-color: #e67e22;
+  --text-color: #34495e;
+  --bg-color: #ffffff;
+  --border-radius: 12px;
+  --shadow-light: rgba(0, 0, 0, 0.07);
+  --shadow-strong: rgba(0, 0, 0, 0.15);
+  --font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 🌙 Modo oscuro */
+.dark-mode {
+  --primary-color: #8a8a8a;
+  --secondary-color: #2c3e50;
+  --accent-color: #f39c12;
+  --text-color: #8a8a8a;
+  --bg-color: #1a1a1a;
+  --shadow-light: rgba(255, 255, 255, 0.05);
+  --shadow-strong: rgba(255, 255, 255, 0.15);
+}
+
 /* === RESET Y FUENTE BASE === */
 * {
   margin: 0;
@@ -11,9 +44,9 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: #f7f9fb;
-  color: #333;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
   height: 100%;
   display: flex;
@@ -33,19 +66,19 @@ form {
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #fff;
+  background-color: var(--bg-color);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--shadow-light);
   transition: all 0.3s ease;
 }
 
 form:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px var(--shadow-strong);
 }
 
 .sticky-form {
   position: sticky;
-  top: 6rem; /* Asegura que el formulario no se superponga al header */
+  top: 6rem;
   z-index: 10;
   margin-top: 0;
 }
@@ -55,14 +88,15 @@ input, select, textarea {
   padding: 0.7rem;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--shadow-light);
   border-radius: 8px;
   font-size: 1rem;
-  background-color: #fafafa;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
 
 input:focus, select:focus, textarea:focus {
-  border-color: #00796b;
+  border-color: var(--accent-color);
   outline: none;
 }
 
@@ -70,13 +104,13 @@ label {
   font-weight: 600;
   margin-bottom: 0.3rem;
   display: block;
-  color: #555;
+  color: var(--text-color);
 }
 
 /* === BOTONES === */
 button {
   padding: 0.75rem 1.5rem;
-  background-color: #00796b;
+  background-color: var(--accent-color);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -86,11 +120,12 @@ button {
 }
 
 button:hover {
-  background-color: #005f56;
+  background-color: #c96a0a;
 }
 
 button:disabled {
-  background-color: #e0e0e0;
+  background-color: #ccc;
+  color: #888;
   cursor: not-allowed;
 }
 
@@ -113,7 +148,7 @@ button:disabled {
 
 /* === ESTILOS DE LINK === */
 a {
-  color: #00796b;
+  color: var(--accent-color);
   text-decoration: none;
 }
 
@@ -127,39 +162,40 @@ main {
 }
 
 h1, h2, h3 {
-  color: #333;
+  color: var(--primary-color);
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 p {
-  color: #666;
+  color: var(--text-color);
   margin-bottom: 1.5rem;
 }
 
 /* === SECCIÓN DE TARJETAS O BLOQUES DE CONTENIDO === */
 .card {
-  background-color: #fff;
+  background-color: var(--bg-color);
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--shadow-light);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px var(--shadow-strong);
 }
 
 .card-title {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 .card-body {
   font-size: 1rem;
-  color: #444;
+  color: var(--text-color);
 }
 
 /* === RESPONSIVO PARA MÓVILES Y TABLETS === */
@@ -204,8 +240,8 @@ p {
 
 /* === LOADER (CUANDO ESTÁ CARGANDO UNA PETICIÓN) === */
 .loader {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #00796b;
+  border: 4px solid var(--secondary-color);
+  border-top: 4px solid var(--accent-color);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -232,8 +268,8 @@ app-header {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px; /* Ajusta según el alto real */
-  background: #fff; /* Asegura fondo si hay scroll */
+  height: 60px;
+  background: var(--bg-color);
   z-index: 1000;
 }
 
@@ -243,16 +279,45 @@ app-footer {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px; /* Ajusta según el alto real */
-  background: #fff;
+  height: 60px;
+  background: var(--bg-color);
   z-index: 1000;
-  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 4px var(--shadow-light);
+}
+
+.theme-toggle-btn {
+  top: 0.75rem;
+  right: 1rem;
+  z-index: 2000;
+
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  box-shadow: 0 6px 15px var(--shadow-strong);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  background-color: #d35400; /* un tono más oscuro del accent */
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px var(--shadow-strong);
+}
+
+.theme-toggle-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 3px;
 }
 
 /* Contenido principal entre el header y footer */
 .main-content {
-  padding-top: 60px;   /* Igual a la altura del header */
-  padding-bottom: 60px; /* Igual a la altura del footer */
+  padding-top: 60px;
+  padding-bottom: 60px;
   overflow-y: auto;
   min-height: 100vh;
   box-sizing: border-box;
@@ -262,4 +327,3 @@ app-footer {
   overflow: hidden;
   height: 100vh;
 }
-

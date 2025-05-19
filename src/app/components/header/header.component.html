@@ -3,6 +3,7 @@
     <img src="assets/img/Logo.png" alt="Logo de Culturizer" class="logo" />
     <h1>Culturizer</h1>
   </div>
+  
   <nav>
     <a routerLink="/home" routerLinkActive="active">Inicio</a>
     <a routerLink="/doubts" routerLinkActive="active">Dudas/Recomendaciones</a>
@@ -10,4 +11,9 @@
     <a routerLink="/about" routerLinkActive="active">Acerca de Nosotros</a>
     <a href="#" (click)="confirmLogout($event)">Cerrar sesión</a>
   </nav>
+<!-- Botón de cambio de tema -->
+  <button id="toggle-dark-mode" class="theme-toggle-btn" aria-label="Cambiar modo">
+  🌙 Modo oscuro
+  </button>
+
 </header>
