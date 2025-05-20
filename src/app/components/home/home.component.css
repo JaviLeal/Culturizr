@@ -1,7 +1,7 @@
 .home-container {
   max-width: 1500px;
   margin: 3rem auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-family);
   padding: 0 1rem;
   text-align: center;
   color: #004d40;

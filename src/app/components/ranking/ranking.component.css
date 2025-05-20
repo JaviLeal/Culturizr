@@ -2,12 +2,12 @@
   max-width: 800px;
   margin: 4rem auto;
   padding: 2rem;
-  background-color: #e0f2f1; /* fondo suave en tono verde claro */
+  background-color: #e0f2f1;
   border: 2px solid #b2dfdb;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   text-align: center;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-family);
   color: #004d40;
 }
 

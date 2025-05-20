@@ -10,8 +10,8 @@ body, .card, header, footer, button, input, textarea, select {
 :root {
   /* Modo claro */
   --primary-color: #2c3e50;
-  --secondary-color: #ecf0f1;
-  --accent-color: #e67e22;
+  --secondary-color: #ffffff;
+  --accent-color: #00796b;
   --text-color: #34495e;
   --bg-color: #ffffff;
   --border-radius: 12px;
@@ -23,8 +23,8 @@ body, .card, header, footer, button, input, textarea, select {
 /* 🌙 Modo oscuro */
 .dark-mode {
   --primary-color: #8a8a8a;
-  --secondary-color: #2c3e50;
-  --accent-color: #f39c12;
+  --secondary-color: #1a1a1a;
+  --accent-color: #00796b;
   --text-color: #8a8a8a;
   --bg-color: #1a1a1a;
   --shadow-light: rgba(255, 255, 255, 0.05);
@@ -285,12 +285,8 @@ app-footer {
   box-shadow: 0 -2px 4px var(--shadow-light);
 }
 
-.theme-toggle-btn {
-  top: 0.75rem;
-  right: 1rem;
-  z-index: 2000;
-
-  background-color: var(--accent-color);
+button.theme-toggle-btn {
+  background-color: #e67e22; /* tu naranja personalizado */
   color: #fff;
   border: none;
   border-radius: 30px;
@@ -303,13 +299,13 @@ app-footer {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.theme-toggle-btn:hover {
-  background-color: #d35400; /* un tono más oscuro del accent */
+button.theme-toggle-btn:hover {
+  background-color: #d35400;
   transform: scale(1.05);
   box-shadow: 0 8px 20px var(--shadow-strong);
 }
 
-.theme-toggle-btn:focus {
+button.theme-toggle-btn:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 3px;
 }
