@@ -1,1 +1,45 @@
-<p>classic works!</p>
+<div class="classic-container" *ngIf="!juegoTerminado">
+    <div class="pregunta-card" *ngIf="preguntas[preguntaActual]">
+        <h2>Pregunta {{ preguntaActual + 1 }}/{{ preguntas.length }}</h2>
+        <p class="pregunta-text">{{ preguntas[preguntaActual].text }}</p>
+
+        <div class="info-adicional">
+            <span class="categoria">
+                Categoría: {{ categoryMap[preguntas[preguntaActual].categoryId] || 'Desconocida' }}
+            </span>
+            <span class="dificultad">
+                • Dificultad: {{ preguntas[preguntaActual].difficulty | titlecase }}
+            </span>
+        </div>
+
+        <div class="opciones">
+            <button class="opcion" *ngFor="let opcion of preguntas[preguntaActual].options" (click)="responder(opcion)">
+                {{ opcion.text }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="resultados-container" *ngIf="juegoTerminado">
+    <h2>Resultados del juego</h2>
+    <ul>
+        <li *ngFor="let r of respuestasUsuario; let i = index" class="respuesta-item">
+            <p><strong>{{ i + 1 }}. {{ preguntas[i]?.text }}</strong></p>
+            <p>
+                Categoría: {{ categoryMap[preguntas[i]?.categoryId] || 'Desconocida' }} •
+                Dificultad: {{ preguntas[i]?.difficulty | titlecase }}
+            </p>
+            <p>
+                Tu respuesta:
+                <span [class.correcta]="r.correcta" [class.incorrecta]="!r.correcta">
+                    {{ r.seleccionada }}
+                </span>
+            </p>
+            <p>Respuesta correcta: <strong>{{ r.respuestaCorrecta }}</strong></p>
+        </li>
+    </ul>
+    <div class="botones-final">
+        <button (click)="reiniciarJuego()" class="btn-reiniciar">Volver a jugar</button>
+        <button (click)="volverHome()" class="btn-home">Volver al inicio</button>
+    </div>
+</div>
