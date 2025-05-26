@@ -1,8 +1,8 @@
 <div class="home-container">
   <h1>Modos de Juego</h1>
   <div class="game-modes">
-    
-    <a class="mode-block" tabindex="0" [routerLink]="['/chrono']">
+    <a class="mode-block chrono-mode" tabindex="0" [routerLink]="['/chrono']">
+      <span class="badge">🎯 Rápido</span>
       <div class="icon">⏱️</div>
       <h2>Modo Contrarreloj</h2>
       <p>Responde todas las preguntas que puedas antes de que se acabe el tiempo.</p>
@@ -14,17 +14,18 @@
       <p>Juega a tu ritmo con preguntas de todas las categorías.</p>
     </a>
 
-    <a class="mode-block" tabindex="0" [routerLink]="['/onetheme']">
+    <a class="mode-block thematic-mode" tabindex="0" [routerLink]="['/onetheme']">
+      <span class="badge">👑 Especializado</span>
       <div class="icon">📚</div>
       <h2>Modo de una sola temática</h2>
       <p>Elige entre Deporte, Ciencia o Historia y responde solo preguntas de esa temática.</p>
     </a>
 
-    <a class="mode-block" tabindex="0" [routerLink]="['/extreme']">
+    <a class="mode-block extreme-mode" tabindex="0" [routerLink]="['/extreme']">
+      <span class="badge">💀 Difícil</span>
       <div class="icon">🔥</div>
       <h2>Modo Extremo</h2>
       <p>Desafía tus conocimientos con solo preguntas de categoría "Difícil"</p>
     </a>
-
   </div>
 </div>

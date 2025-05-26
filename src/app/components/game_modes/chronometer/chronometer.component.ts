@@ -94,4 +94,19 @@ export class ChronometerComponent implements OnInit, OnDestroy {
   private shuffle(array: any[]): any[] {
     return array.sort(() => Math.random() - 0.5);
   }
+
+  tiempoTotal: number = 30; 
+
+getPorcentajeTiempo(): number {
+  return (this.tiempoRestante / this.tiempoTotal) * 100;
+}
+
+getColorBarra(): string {
+  const porcentaje = this.getPorcentajeTiempo();
+
+  if (porcentaje > 50) return '#26a69a';       // verde
+  else if (porcentaje > 25) return '#f9a825';  // naranja (ámbar)
+  else return '#c62828';                        // rojo
+}
+
 }

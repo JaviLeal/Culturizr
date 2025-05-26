@@ -21,7 +21,7 @@
   justify-content: center;
   gap: 25px;
   padding-bottom: 5px;
-  padding-top: 12px;
+  padding-top: 23px;
   overflow-x: hidden; /* quitar scroll horizontal */
 }
 
@@ -39,8 +39,8 @@
   align-items: center;
   outline: none;
 
-  flex: 0 0 260px; /* tamaño fijo más pequeño para que entren todos */
-  max-width: 260px;
+  flex: 0 0 250px; /* tamaño fijo más pequeño para que entren todos */
+  max-width: 250px;
 }
 
 .mode-block .icon {
@@ -79,4 +79,107 @@
   opacity: 0.85;
   margin: 0;
   max-width: 280px;
+}
+
+/* 🎯 Modo Contrarreloj (azul intenso) */
+.chrono-mode {
+  background: #e3f2fd;
+  color: #0d47a1;
+  box-shadow: 0 6px 20px rgba(13, 71, 161, 0.3);
+}
+
+.chrono-mode:hover,
+.chrono-mode:focus {
+  background-color: #bbdefb;
+  box-shadow: 0 14px 40px rgba(13, 71, 161, 0.45);
+}
+
+.chrono-mode:active {
+  box-shadow: 0 10px 25px rgba(13, 71, 161, 0.4);
+  transform: translateY(-6px) scale(0.95);
+}
+
+/* 📚 Modo Temático (púrpura) */
+.thematic-mode {
+  background: #f3e5f5;
+  color: #6a1b9a;
+  box-shadow: 0 6px 20px rgba(106, 27, 154, 0.3);
+}
+
+.thematic-mode:hover,
+.thematic-mode:focus {
+  background-color: #e1bee7;
+  box-shadow: 0 14px 40px rgba(106, 27, 154, 0.45);
+}
+
+.thematic-mode:active {
+  box-shadow: 0 10px 25px rgba(106, 27, 154, 0.4);
+  transform: translateY(-6px) scale(0.95);
+}
+
+/* 🔥 Modo Extremo (rojo) */
+.extreme-mode {
+  background: #ffebee;
+  color: #b71c1c;
+  box-shadow: 0 6px 20px rgba(183, 28, 28, 0.3);
+}
+
+.extreme-mode:hover,
+.extreme-mode:focus {
+  background-color: #ffcdd2;
+  box-shadow: 0 14px 40px rgba(183, 28, 28, 0.5);
+}
+
+.extreme-mode:active {
+  box-shadow: 0 10px 25px rgba(183, 28, 28, 0.4);
+  transform: translateY(-6px) scale(0.95);
+}
+
+.badge {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: #ffffff;
+  color: #004d40;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  transition: background 0.3s;
+}
+
+/* Asegurar posicionamiento relativo del bloque */
+.mode-block {
+  position: relative;
+}
+
+/* Colores por tipo */
+.chrono-mode .badge {
+  background-color: #bbdefb;
+  color: #0d47a1;
+}
+
+.thematic-mode .badge {
+  background-color: #e1bee7;
+  color: #6a1b9a;
+}
+
+.extreme-mode .badge {
+  background-color: #ffcdd2;
+  color: #b71c1c;
+}
+
+@keyframes pulse-skull {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.extreme-mode .badge {
+  animation: pulse-skull 1.5s infinite ease-in-out;
 }

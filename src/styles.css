@@ -22,7 +22,7 @@ body, .card, header, footer, button, input, textarea, select {
 
 /* 🌙 Modo oscuro */
 .dark-mode {
-  --primary-color: #8a8a8a;
+  --primary-color: #585858;
   --secondary-color: #1a1a1a;
   --accent-color: #00796b;
   --text-color: #8a8a8a;
@@ -117,10 +117,6 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #c96a0a;
 }
 
 button:disabled {

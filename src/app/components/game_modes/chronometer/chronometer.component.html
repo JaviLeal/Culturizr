@@ -1,4 +1,14 @@
 <div class="chronometer-container" *ngIf="!juegoTerminado">
+   <div class="barra-tiempo">
+  <div
+    class="progreso"
+    [ngStyle]="{
+      width: getPorcentajeTiempo() + '%',
+      background: getColorBarra()
+    }"
+  ></div>
+</div>
+
   <div class="temporizador">Tiempo restante: {{ tiempoRestante }}s</div>
 
   <div class="pregunta-card" *ngIf="preguntas[preguntaActual]">
