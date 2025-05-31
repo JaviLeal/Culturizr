@@ -60,6 +60,28 @@ export class QuestionService {
       )
     );
   }
+  
+getQuestionsByCategory(categoryId: number): Observable<FormattedQuestion[]> {
+  return this.http.get<any[]>(this.apiUrl).pipe(
+    map(data =>
+      data
+        .filter(q => q.category_id === categoryId)
+        .map(q => ({
+          id: q.id,
+          categoryId: q.category_id,
+          text: q.question_text,
+          correctAnswer: q.correct_answer,
+          difficulty: q.difficulty,
+          options: shuffle([
+            { text: q.correct_answer, isCorrect: true },
+            { text: q.wrong_answer_1, isCorrect: false },
+            { text: q.wrong_answer_2, isCorrect: false },
+            { text: q.wrong_answer_3, isCorrect: false }
+          ])
+        }))
+    )
+  );
+}
 
 }
 

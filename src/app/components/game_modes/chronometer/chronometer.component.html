@@ -20,7 +20,7 @@
         Categoría: {{ categoryMap[preguntas[preguntaActual].categoryId] || 'Desconocida' }}
       </span>
       <span class="dificultad">
-        Dificultad: {{ preguntas[preguntaActual].difficulty }}
+        Dificultad: {{ preguntas[preguntaActual].difficulty | titlecase }}
       </span>
     </div>
 
@@ -45,7 +45,7 @@
       <p><strong>{{ i + 1 }}. {{ preguntas[i]?.text }}</strong></p>
       <p>
         Categoría: {{ categoryMap[preguntas[i]?.categoryId] || 'Desconocida' }} |
-        Dificultad: {{ preguntas[i]?.difficulty }}
+        Dificultad: {{ preguntas[i]?.difficulty | titlecase }}
       </p>
       <p>
         Tu respuesta:

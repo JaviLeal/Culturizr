@@ -3,12 +3,12 @@
         <h2>Pregunta {{ preguntaActual + 1 }}/{{ preguntas.length }}</h2>
         <p class="pregunta-text">{{ preguntas[preguntaActual].text }}</p>
 
-        <div class="info-adicional">
+        <div class="categoria-dificultad">
             <span class="categoria">
                 Categoría: {{ categoryMap[preguntas[preguntaActual].categoryId] || 'Desconocida' }}
             </span>
             <span class="dificultad">
-                • Dificultad: {{ preguntas[preguntaActual].difficulty | titlecase }}
+                Dificultad: {{ preguntas[preguntaActual].difficulty | titlecase }}
             </span>
         </div>
 
@@ -26,7 +26,7 @@
         <li *ngFor="let r of respuestasUsuario; let i = index" class="respuesta-item">
             <p><strong>{{ i + 1 }}. {{ preguntas[i]?.text }}</strong></p>
             <p>
-                Categoría: {{ categoryMap[preguntas[i]?.categoryId] || 'Desconocida' }} •
+                Categoría: {{ categoryMap[preguntas[i]?.categoryId] || 'Desconocida' }}
                 Dificultad: {{ preguntas[i]?.difficulty | titlecase }}
             </p>
             <p>

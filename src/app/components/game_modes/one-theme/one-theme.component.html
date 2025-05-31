@@ -1,1 +1,59 @@
-<p>one-theme works!</p>
+<div class="contenedor-principal">
+
+  <!-- Ruleta y botones -->
+  <div class="contenedor-ruleta">
+    <div class="ruleta-wrapper">
+      <div class="flecha"></div>
+      <div
+        class="ruleta"
+        [ngStyle]="{
+          transform: 'rotate(' + angulo + 'deg)',
+          transition: girando ? 'transform 4s cubic-bezier(0.33, 1, 0.68, 1)' : 'none'
+        }"
+      ></div>
+    </div>
+
+    <div class="leyenda">
+      <div *ngFor="let categoria of categorias" class="item-leyenda">
+        <div class="color-box" [style.background]="categoria.color"></div>
+        <span [style.color]="categoria.color">{{ categoria.nombre }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="botones">
+    <button (click)="girarRuleta()" [disabled]="girando">Volver a tirar</button>
+    <button (click)="jugar()" [disabled]="!categoriaSeleccionada || girando">Jugar</button>
+    <button *ngIf="juegoTerminado" (click)="reiniciarJuego()">Reiniciar</button>
+  </div>
+
+  <div *ngIf="categoriaSeleccionada && !juegoTerminado && preguntasFiltradas.length">
+    <h3>Categoría: {{ categoriaSeleccionada }}</h3>
+    <h4>Pregunta {{ preguntaActualIndex + 1 }} de {{ preguntasFiltradas.length }}</h4>
+    <p>{{ preguntasFiltradas[preguntaActualIndex].text }}</p>
+    <div class="opciones">
+      <button class="opcion" *ngFor="let opcion of preguntasFiltradas[preguntaActualIndex].options"
+              (click)="responder(opcion)">
+        {{ opcion.text }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="juegoTerminado" class="resultado">
+    <h2>Resultados</h2>
+    <ul>
+      <li *ngFor="let r of respuestasUsuario; let i = index">
+        <strong>{{ i + 1 }}. {{ preguntasFiltradas[i].text }}</strong><br />
+        Tu respuesta:
+        <span [style.color]="r.correcta ? 'green' : 'red'">{{ r.seleccionada }}</span><br />
+        Respuesta correcta: {{ r.respuestaCorrecta }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Mostrar la categoría al finalizar el giro -->
+  <div *ngIf="categoriaSeleccionada && !preguntasFiltradas.length && !juegoTerminado && !girando" class="resultado">
+    <p><strong>Categoría seleccionada:</strong> {{ categoriaSeleccionada }}</p>
+  </div>
+
+</div>
