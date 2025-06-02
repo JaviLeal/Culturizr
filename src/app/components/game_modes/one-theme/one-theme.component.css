@@ -27,20 +27,31 @@
     #36a2eb 120deg 240deg,
     #ffce56 240deg 360deg
   );
+}
+
+.ruleta {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #ff6384 0deg 120deg,
+    #36a2eb 120deg 240deg,
+    #ffce56 240deg 360deg
+  );
   transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .flecha {
   position: absolute;
-  top: -20px;
+  top: -30px;
   left: 50%;
   transform: translateX(-50%) rotate(180deg); /* flecha apuntando hacia abajo */
   width: 0; 
   height: 0; 
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 25px solid #004d40;
-  z-index: 10;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 40px solid #004d40;
+  z-index: 1;
 }
 
 .leyenda {

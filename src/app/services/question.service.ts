@@ -83,6 +83,17 @@ getQuestionsByCategory(categoryId: number): Observable<FormattedQuestion[]> {
   );
 }
 
+getHardQuestions(): Observable<FormattedQuestion[]> {
+  return this.getAllQuestions().pipe(
+    map(questions =>
+      questions
+        .filter(q => q.difficulty.toLowerCase() === 'difícil')
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 10)
+    )
+  );
+}
+
 }
 
 function shuffle(array: any[]): any[] {

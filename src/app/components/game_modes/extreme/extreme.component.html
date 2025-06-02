@@ -1,1 +1,32 @@
-<p>extreme works!</p>
+<div class="modo-extremo">
+  <h2>Modo Extremo: Solo preguntas difíciles</h2>
+
+  <div *ngIf="!juegoTerminado && preguntas.length">
+    <h3>Pregunta {{ preguntaActualIndex + 1 }} de {{ preguntas.length }}</h3>
+    <p>{{ preguntas[preguntaActualIndex].text }}</p>
+
+    <div class="opciones">
+      <button *ngFor="let opcion of preguntas[preguntaActualIndex].options" (click)="responder(opcion)">
+        {{ opcion.text }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="juegoTerminado">
+  <h3>Resultados</h3>
+  <ul>
+    <li *ngFor="let r of respuestasUsuario; let i = index">
+      <strong>{{ i + 1 }}. {{ preguntas[i].text }}</strong><br />
+      Tu respuesta: <span [style.color]="r.correcta ? 'green' : 'red'">{{ r.seleccionada }}</span><br />
+      Respuesta correcta: {{ r.respuestaCorrecta }}
+    </li>
+  </ul>
+  <div class="botones-final">
+    <button (click)="reiniciar()">Volver a jugar</button>
+    <button routerLink="/home" class="btn-inicio">
+     Volver al inicio
+    </button>
+  </div>
+</div>
+
+</div>

@@ -13,6 +13,7 @@ export class OneThemeComponent {
     { nombre: 'Historia', color: '#FFCE56', id: 3 }
   ];
 
+  tiradaConfirmada = false;
   angulo = 0;
   girando = false;
   categoriaSeleccionada: string | null = null;
@@ -47,6 +48,8 @@ export class OneThemeComponent {
 
   const categoriaObj = this.categorias.find(c => c.nombre === this.categoriaSeleccionada);
   if (!categoriaObj) return;
+
+  this.tiradaConfirmada = true; // bloquea la tirada
 
   this.questionService.getQuestionsByCategory(categoriaObj.id).subscribe(
     preguntas => {
@@ -86,5 +89,6 @@ export class OneThemeComponent {
     this.preguntaActualIndex = 0;
     this.juegoTerminado = false;
     this.respuestasUsuario = [];
+    this.tiradaConfirmada = false; // habilita de nuevo la tirada
   }
 }

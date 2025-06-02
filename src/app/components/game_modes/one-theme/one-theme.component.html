@@ -22,7 +22,7 @@
   </div>
 
   <div class="botones">
-    <button (click)="girarRuleta()" [disabled]="girando">Volver a tirar</button>
+    <button (click)="girarRuleta()" [disabled]="girando || tiradaConfirmada">Tirar / Volver a tirar</button>
     <button (click)="jugar()" [disabled]="!categoriaSeleccionada || girando">Jugar</button>
     <button *ngIf="juegoTerminado" (click)="reiniciarJuego()">Reiniciar</button>
   </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, Event as RouterEvent } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) { }
+  modoExtremoActivo = false;
+
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe(event => {
+      this.modoExtremoActivo = event.urlAfterRedirects.includes('/extreme');
+    });
+  }
 
   ngAfterViewInit() {
     const btn = document.getElementById('toggle-dark-mode');

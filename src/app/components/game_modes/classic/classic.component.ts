@@ -8,6 +8,7 @@ import { QuestionService, FormattedQuestion } from 'src/app/services/question.se
   styleUrls: ['./classic.component.css']
 })
 export class ClassicComponent implements OnInit {
+  
   preguntas: FormattedQuestion[] = [];
   preguntaActual = 0;
   respuestasUsuario: {
