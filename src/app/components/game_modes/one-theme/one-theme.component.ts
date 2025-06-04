@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { QuestionService, FormattedQuestion } from 'src/app/services/question.service';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-one-theme',
@@ -23,7 +25,15 @@ export class OneThemeComponent {
   juegoTerminado = false;
   respuestasUsuario: { seleccionada: string; correcta: boolean; respuestaCorrecta: string }[] = [];
 
-  constructor(private questionService: QuestionService) {}
+  totalScore: number = 0;
+  guardandoPuntuacion: boolean = false;
+  puntuacionGuardada: boolean = false;
+
+  constructor(
+    private questionService: QuestionService,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   girarRuleta() {
     if (this.girando) return;
@@ -44,31 +54,41 @@ export class OneThemeComponent {
   }
 
   jugar() {
-  if (!this.categoriaSeleccionada) return;
+    if (!this.categoriaSeleccionada) return;
 
-  const categoriaObj = this.categorias.find(c => c.nombre === this.categoriaSeleccionada);
-  if (!categoriaObj) return;
+    const categoriaObj = this.categorias.find(c => c.nombre === this.categoriaSeleccionada);
+    if (!categoriaObj) return;
 
-  this.tiradaConfirmada = true; // bloquea la tirada
+    this.tiradaConfirmada = true; // bloquea la tirada
 
-  this.questionService.getQuestionsByCategory(categoriaObj.id).subscribe(
-    preguntas => {
-      this.preguntasFiltradas = preguntas
-        .sort(() => Math.random() - 0.5) // Mezcla aleatoriamente si lo deseas
-        .slice(0, 10); // Limita a 10 preguntas
-      this.preguntaActualIndex = 0;
-      this.juegoTerminado = false;
-      this.respuestasUsuario = [];
-    },
-    error => console.error('Error cargando preguntas:', error)
-  );
-}
-
+    this.questionService.getQuestionsByCategory(categoriaObj.id).subscribe(
+      preguntas => {
+        this.preguntasFiltradas = preguntas
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 10);
+        this.preguntaActualIndex = 0;
+        this.juegoTerminado = false;
+        this.respuestasUsuario = [];
+        this.totalScore = 0;            // Resetea puntuación al iniciar
+        this.puntuacionGuardada = false;
+        this.guardandoPuntuacion = false;
+      },
+      error => console.error('Error cargando preguntas:', error)
+    );
+  }
 
   responder(opcion: { text: string; isCorrect: boolean }) {
     if (this.juegoTerminado) return;
 
     const preguntaActual = this.preguntasFiltradas[this.preguntaActualIndex];
+
+    if (opcion.isCorrect) {
+      let puntos = 0;
+      if (preguntaActual.difficulty === 'fácil') puntos = 500;
+      else if (preguntaActual.difficulty === 'media') puntos = 1000;
+      else if (preguntaActual.difficulty === 'difícil') puntos = 2000;
+      this.totalScore += puntos;
+    }
 
     this.respuestasUsuario.push({
       seleccionada: opcion.text,
@@ -80,7 +100,38 @@ export class OneThemeComponent {
       this.preguntaActualIndex++;
     } else {
       this.juegoTerminado = true;
+      this.guardarPuntuacion(); // Guarda la puntuación cuando termina
     }
+  }
+
+  guardarPuntuacion(): void {
+    this.guardandoPuntuacion = true;
+    this.puntuacionGuardada = false;
+
+    const userId = this.authService.getUserId();
+    if (!userId) {
+      console.error('No hay userId, no se puede guardar puntuación');
+      this.guardandoPuntuacion = false;
+      return;
+    }
+
+    const body = {
+      user_id: userId,
+      puntos: this.totalScore
+    };
+
+    this.http.post('http://localhost/culturizer-api/?route=update-score', body)
+      .subscribe({
+        next: (response) => {
+          console.log('Puntuación guardada con éxito:', response);
+          this.guardandoPuntuacion = false;
+          this.puntuacionGuardada = true;
+        },
+        error: (err) => {
+          console.error('Error al guardar puntuación:', err);
+          this.guardandoPuntuacion = false;
+        }
+      });
   }
 
   reiniciarJuego() {
@@ -89,6 +140,10 @@ export class OneThemeComponent {
     this.preguntaActualIndex = 0;
     this.juegoTerminado = false;
     this.respuestasUsuario = [];
-    this.tiradaConfirmada = false; // habilita de nuevo la tirada
+    this.tiradaConfirmada = false;
+
+    this.totalScore = 0;
+    this.puntuacionGuardada = false;
+    this.guardandoPuntuacion = false;
   }
 }

@@ -22,10 +22,10 @@ body, .card, header, footer, button, input, textarea, select {
 
 /* 🌙 Modo oscuro */
 .dark-mode {
-  --primary-color: #585858;
+  --primary-color: #666666;
   --secondary-color: #1a1a1a;
   --accent-color: #00796b;
-  --text-color: #8a8a8a;
+  --text-color: #5d5d5d;
   --bg-color: #1a1a1a;
   --shadow-light: rgba(255, 255, 255, 0.05);
   --shadow-strong: rgba(255, 255, 255, 0.15);

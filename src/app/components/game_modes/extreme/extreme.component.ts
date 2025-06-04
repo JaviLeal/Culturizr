@@ -1,5 +1,7 @@
-import { Component, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Component, Renderer2, OnInit, OnDestroy } from '@angular/core'; 
 import { QuestionService, FormattedQuestion } from 'src/app/services/question.service';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-extreme',
@@ -7,7 +9,7 @@ import { QuestionService, FormattedQuestion } from 'src/app/services/question.se
   styleUrls: ['./extreme.component.css']
 })
 export class ExtremeComponent implements OnInit, OnDestroy {
-  
+
   preguntas: FormattedQuestion[] = [];
   preguntaActualIndex = 0;
   respuestasUsuario: {
@@ -17,7 +19,16 @@ export class ExtremeComponent implements OnInit, OnDestroy {
   }[] = [];
   juegoTerminado = false;
 
-  constructor(private questionService: QuestionService, private renderer: Renderer2) { }
+  totalScore: number = 0;
+  guardandoPuntuacion: boolean = false;
+  puntuacionGuardada: boolean = false;
+
+  constructor(
+    private questionService: QuestionService,
+    private renderer: Renderer2,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.renderer.addClass(document.body, 'dark-mode');
@@ -35,6 +46,9 @@ export class ExtremeComponent implements OnInit, OnDestroy {
         this.preguntaActualIndex = 0;
         this.juegoTerminado = false;
         this.respuestasUsuario = [];
+        this.totalScore = 0;
+        this.guardandoPuntuacion = false;
+        this.puntuacionGuardada = false;
       },
       error => console.error('Error cargando preguntas difíciles:', error)
     );
@@ -42,6 +56,10 @@ export class ExtremeComponent implements OnInit, OnDestroy {
 
   responder(opcion: { text: string; isCorrect: boolean }) {
     const pregunta = this.preguntas[this.preguntaActualIndex];
+
+    if (opcion.isCorrect) {
+      this.totalScore += 2000; // Todas las preguntas son difíciles
+    }
 
     this.respuestasUsuario.push({
       seleccionada: opcion.text,
@@ -53,7 +71,35 @@ export class ExtremeComponent implements OnInit, OnDestroy {
       this.preguntaActualIndex++;
     } else {
       this.juegoTerminado = true;
+      this.guardarPuntuacion();
     }
+  }
+
+  guardarPuntuacion() {
+    this.guardandoPuntuacion = true;
+    const userId = this.authService.getUserId();
+    if (!userId) {
+      console.error('No hay userId disponible');
+      this.guardandoPuntuacion = false;
+      return;
+    }
+
+    const body = {
+      user_id: userId,
+      puntos: this.totalScore
+    };
+
+    this.http.post('http://localhost/culturizer-api/?route=update-score', body)
+      .subscribe({
+        next: () => {
+          this.guardandoPuntuacion = false;
+          this.puntuacionGuardada = true;
+        },
+        error: (err) => {
+          console.error('Error al guardar puntuación:', err);
+          this.guardandoPuntuacion = false;
+        }
+      });
   }
 
   reiniciar() {

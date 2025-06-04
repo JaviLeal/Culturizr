@@ -24,7 +24,7 @@
   <div class="botones">
     <button (click)="girarRuleta()" [disabled]="girando || tiradaConfirmada">Tirar / Volver a tirar</button>
     <button (click)="jugar()" [disabled]="!categoriaSeleccionada || girando">Jugar</button>
-    <button *ngIf="juegoTerminado" (click)="reiniciarJuego()">Reiniciar</button>
+    <button *ngIf="juegoTerminado && puntuacionGuardada" (click)="reiniciarJuego()">Reiniciar</button>
   </div>
 
   <div *ngIf="categoriaSeleccionada && !juegoTerminado && preguntasFiltradas.length">
@@ -40,15 +40,24 @@
   </div>
 
   <div *ngIf="juegoTerminado" class="resultado">
-    <h2>Resultados</h2>
-    <ul>
-      <li *ngFor="let r of respuestasUsuario; let i = index">
-        <strong>{{ i + 1 }}. {{ preguntasFiltradas[i].text }}</strong><br />
-        Tu respuesta:
-        <span [style.color]="r.correcta ? 'green' : 'red'">{{ r.seleccionada }}</span><br />
-        Respuesta correcta: {{ r.respuestaCorrecta }}
-      </li>
-    </ul>
+    <div *ngIf="guardandoPuntuacion && !puntuacionGuardada">
+      Guardando puntuación...
+    </div>
+
+    <div *ngIf="puntuacionGuardada">
+      <h2>Resultados</h2>
+      <ul>
+        <li *ngFor="let r of respuestasUsuario; let i = index">
+          <strong>{{ i + 1 }}. {{ preguntasFiltradas[i].text }}</strong><br />
+          Tu respuesta:
+          <span [style.color]="r.correcta ? 'green' : 'red'">{{ r.seleccionada }}</span><br />
+          Respuesta correcta: {{ r.respuestaCorrecta }}
+        </li>
+      </ul>
+
+      <h3>Puntuación final: {{ totalScore }} puntos</h3>
+
+    </div>
   </div>
 
   <!-- Mostrar la categoría al finalizar el giro -->

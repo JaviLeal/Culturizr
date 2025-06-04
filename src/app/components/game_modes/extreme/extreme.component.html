@@ -13,20 +13,26 @@
   </div>
 
   <div *ngIf="juegoTerminado">
-  <h3>Resultados</h3>
-  <ul>
-    <li *ngFor="let r of respuestasUsuario; let i = index">
-      <strong>{{ i + 1 }}. {{ preguntas[i].text }}</strong><br />
-      Tu respuesta: <span [style.color]="r.correcta ? 'green' : 'red'">{{ r.seleccionada }}</span><br />
-      Respuesta correcta: {{ r.respuestaCorrecta }}
-    </li>
-  </ul>
-  <div class="botones-final">
-    <button (click)="reiniciar()">Volver a jugar</button>
-    <button routerLink="/home" class="btn-inicio">
-     Volver al inicio
-    </button>
-  </div>
-</div>
+    <div *ngIf="guardandoPuntuacion && !puntuacionGuardada">
+      Guardando puntuación...
+    </div>
 
+    <div *ngIf="puntuacionGuardada">
+      <h3>Resultados</h3>
+      <ul>
+        <li *ngFor="let r of respuestasUsuario; let i = index">
+          <strong>{{ i + 1 }}. {{ preguntas[i].text }}</strong><br />
+          Tu respuesta: <span [style.color]="r.correcta ? 'green' : 'red'">{{ r.seleccionada }}</span><br />
+          Respuesta correcta: {{ r.respuestaCorrecta }}
+        </li>
+      </ul>
+
+      <h3>Puntuación final: {{ totalScore }} puntos</h3>
+
+      <div class="botones-final">
+        <button (click)="reiniciar()">Volver a jugar</button>
+        <button routerLink="/home" class="btn-inicio">Volver al inicio</button>
+      </div>
+    </div>
+  </div>
 </div>

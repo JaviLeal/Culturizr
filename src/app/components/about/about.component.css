@@ -152,7 +152,7 @@
 .value-card p,
 .value-card ul {
   font-size: 1.05rem;
-  color: var(--primary-color);
+  color: var(--text-color);
   line-height: 1.7;
   text-align: left;
   transition: color 0.4s ease;

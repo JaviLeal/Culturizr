@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { QuestionService, FormattedQuestion } from 'src/app/services/question.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { ScoreService } from 'src/app/services/score.service';
 
 @Component({
   selector: 'app-classic',
@@ -18,6 +20,7 @@ export class ClassicComponent implements OnInit {
   }[] = [];
 
   juegoTerminado = false;
+  totalScore: number = 0;
 
   categoryMap: { [key: number]: string } = {
     1: 'Historia',
@@ -32,7 +35,12 @@ export class ClassicComponent implements OnInit {
     10: 'Cultura general'
   };
 
-  constructor(private questionService: QuestionService, private router: Router) {}
+  constructor(
+    private questionService: QuestionService, 
+    private router: Router,
+    private authService: AuthService,
+    private scoreService: ScoreService
+  ) {}
 
   ngOnInit(): void {
     this.cargarPreguntas();
@@ -44,11 +52,21 @@ export class ClassicComponent implements OnInit {
       this.preguntaActual = 0;
       this.respuestasUsuario = [];
       this.juegoTerminado = false;
+      this.totalScore = 0;
     });
   }
 
   responder(opcion: { text: string; isCorrect: boolean }) {
     const pregunta = this.preguntas[this.preguntaActual];
+
+    if (opcion.isCorrect) {
+      let puntos = 0;
+      if (pregunta.difficulty === 'fácil') puntos = 500;
+      else if (pregunta.difficulty === 'media') puntos = 1000;
+      else if (pregunta.difficulty === 'difícil') puntos = 2000;
+      this.totalScore += puntos;
+    }
+
     this.respuestasUsuario.push({
       seleccionada: opcion.text,
       correcta: opcion.isCorrect,
@@ -58,7 +76,19 @@ export class ClassicComponent implements OnInit {
     this.preguntaActual++;
 
     if (this.preguntaActual >= this.preguntas.length) {
-      this.juegoTerminado = true;
+      this.finalizarJuego();
+    }
+  }
+
+  finalizarJuego() {
+    this.juegoTerminado = true;
+
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.scoreService.updateScore(userId, this.totalScore).subscribe({
+        next: () => console.log('Puntuación guardada con éxito'),
+        error: err => console.error('Error al guardar puntuación', err)
+      });
     }
   }
 

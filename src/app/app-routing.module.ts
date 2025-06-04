@@ -9,6 +9,7 @@ import { ChronometerComponent } from './components/game_modes/chronometer/chrono
 import { ClassicComponent } from './components/game_modes/classic/classic.component';
 import { OneThemeComponent } from './components/game_modes/one-theme/one-theme.component';
 import { ExtremeComponent } from './components/game_modes/extreme/extreme.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: AuthComponent },
@@ -16,10 +17,24 @@ const routes: Routes = [
   { path: 'ranking', component: RankingComponent },
   { path: 'doubts', component: DoubtsComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'chrono', component: ChronometerComponent },
-  { path: 'classic', component: ClassicComponent },
-  { path: 'onetheme', component: OneThemeComponent },
-  { path: 'extreme', component: ExtremeComponent },
+  { 
+    path: 'classic', 
+    component: ClassicComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chrono',
+    component: ChronometerComponent,
+    canActivate: [AuthGuard]
+  },  
+  { path: 'onetheme', 
+    component: OneThemeComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'extreme', 
+    component: ExtremeComponent,
+    canActivate: [AuthGuard]
+  },
 
 ];
 

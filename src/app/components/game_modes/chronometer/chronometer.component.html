@@ -1,13 +1,13 @@
 <div class="chronometer-container" *ngIf="!juegoTerminado">
-   <div class="barra-tiempo">
-  <div
-    class="progreso"
-    [ngStyle]="{
-      width: getPorcentajeTiempo() + '%',
-      background: getColorBarra()
-    }"
-  ></div>
-</div>
+  <div class="barra-tiempo">
+    <div
+      class="progreso"
+      [ngStyle]="{
+        width: getPorcentajeTiempo() + '%',
+        background: getColorBarra()
+      }"
+    ></div>
+  </div>
 
   <div class="temporizador">Tiempo restante: {{ tiempoRestante }}s</div>
 
@@ -37,28 +37,40 @@
 </div>
 
 <div class="resultados-container" *ngIf="juegoTerminado">
-  <h2>Juego terminado</h2>
-  <p><strong>Respuestas correctas: {{ respuestasCorrectas }}</strong></p>
+  <!-- Mostrar mensaje mientras guarda puntuación -->
+  <div *ngIf="!puntuacionGuardada" class="guardando-puntuacion">
+    Guardando puntuación...
+  </div>
 
-  <ul>
-    <li *ngFor="let r of respuestasUsuario; let i = index" class="respuesta-item">
-      <p><strong>{{ i + 1 }}. {{ preguntas[i]?.text }}</strong></p>
-      <p>
-        Categoría: {{ categoryMap[preguntas[i]?.categoryId] || 'Desconocida' }} |
-        Dificultad: {{ preguntas[i]?.difficulty | titlecase }}
-      </p>
-      <p>
-        Tu respuesta:
-        <span [class.correcta]="r.correcta" [class.incorrecta]="!r.correcta">
-          {{ r.seleccionada }}
-        </span>
-      </p>
-      <p>Respuesta correcta: <strong>{{ r.respuestaCorrecta }}</strong></p>
-    </li>
-  </ul>
+  <!-- Mostrar resultados solo cuando la puntuación ya fue guardada -->
+  <div *ngIf="puntuacionGuardada">
+    <h2>Juego terminado</h2>
+    <p><strong>Respuestas correctas: {{ respuestasCorrectas }}</strong></p>
 
-  <div class="botones-final">
-    <button class="boton" (click)="volverAJugar()">Volver a jugar</button>
-    <button class="boton" (click)="irAHome()">Volver al inicio</button>
+    <ul>
+      <li *ngFor="let r of respuestasUsuario; let i = index" class="respuesta-item">
+        <p><strong>{{ i + 1 }}. {{ preguntas[i]?.text }}</strong></p>
+        <p>
+          Categoría: {{ categoryMap[preguntas[i]?.categoryId] || 'Desconocida' }} |
+          Dificultad: {{ preguntas[i]?.difficulty | titlecase }}
+        </p>
+        <p>
+          Tu respuesta:
+          <span [class.correcta]="r.correcta" [class.incorrecta]="!r.correcta">
+            {{ r.seleccionada }}
+          </span>
+        </p>
+        <p>Respuesta correcta: <strong>{{ r.respuestaCorrecta }}</strong></p>
+      </li>
+    </ul>
+
+    <div class="puntuacion-final">
+      <h3>Puntuación final: {{ totalScore }} puntos</h3>
+    </div>
+
+    <div class="botones-final">
+      <button class="boton" (click)="volverAJugar()">Volver a jugar</button>
+      <button class="boton" (click)="irAHome()">Volver al inicio</button>
+    </div>
   </div>
 </div>

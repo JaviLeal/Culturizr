@@ -1,29 +1,94 @@
-.ranking-container {
-  max-width: 800px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background-color: #e0f2f1;
-  border: 2px solid #b2dfdb;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+.ranking-titulo {
   text-align: center;
-  font-family: var(--font-family);
-  color: #004d40;
+  font-size: 2.8rem;
+  margin-top: 40px;
+  font-weight: 700;
+  color: #222;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.ranking-container h2 {
-  font-size: 2.2rem;
-  color: #00796b;
-  margin-bottom: 1rem;
-  font-weight: bold;
-  border-bottom: 3px solid #00796b;
-  display: inline-block;
-  padding-bottom: 0.3rem;
+/* Contenedor general del podio */
+.podio-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 60px;
+  margin-top: 220px; /* Baja todo el podio */
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  height: 220px;
 }
 
-.ranking-container p {
-  font-size: 1.1rem;
-  color: #004d40;
-  margin-top: 1rem;
-  line-height: 1.6;
+/* Estilos comunes podio */
+.podio {
+  background: #f0f0f0;
+  border-radius: 15px 15px 5px 5px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 160px;
+  text-align: center;
+  padding: 20px 15px 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+/* Medalla con número grande arriba */
+.medalla {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: white;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  border-radius: 50%;
+  background: gold;
+  margin: 0 auto 15px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+/* Info de jugador */
+.info .nombre {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #222;
+  margin-bottom: 5px;
+  overflow-wrap: anywhere;
+}
+
+.info .email {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.info .puntos {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #111;
+}
+
+/* Podio específico para cada posición */
+.puesto.primero {
+  background: linear-gradient(135deg, #ffd700, #ffcc00);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.7);
+  transform: translateY(-70px);
+  z-index: 3;
+}
+
+.puesto.segundo {
+  background: linear-gradient(135deg, #c0c0c0, #a9a9a9);
+  box-shadow: 0 8px 20px rgba(192, 192, 192, 0.6);
+  transform: translateY(-30px);
+  z-index: 2;
+}
+
+.puesto.tercero {
+  background: linear-gradient(135deg, #cd7f32, #b87333);
+  box-shadow: 0 6px 15px rgba(205, 127, 50, 0.6);
+  transform: translateY(0);
+  z-index: 1;
 }

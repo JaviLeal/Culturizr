@@ -17,40 +17,63 @@ export class AuthComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-login() {
-  this.authService.login(this.email, this.password).subscribe({
-    next: (response) => {
-      console.log('Login successful', response);
-      this.successMessage = 'Logueo exitoso';
-      this.errorMessage = '';
-      // Guarda estado
-      localStorage.setItem('user', JSON.stringify(response.user));
-      console.log('Redirigiendo a home');
-      this.router.navigate(['/home']); // Redirección
-    },
-    error: (err) => {
-      console.error('Login error', err);
-      this.errorMessage = 'Error en el logueo';
-      this.successMessage = '';
-    }
-  });
+  login() {
+    this.authService.login(this.email, this.password).subscribe({
+      next: (response) => {
+        console.log('Login successful response:', response);
+
+        if (response && response.id) {
+          localStorage.setItem('userId', response.id);
+          localStorage.setItem('username', response.username);
+          this.successMessage = 'Logueo exitoso';
+          this.errorMessage = '';
+          this.router.navigate(['/home']);
+        } else if (response && response.user && response.user.id) {
+          localStorage.setItem('userId', response.user.id);
+          localStorage.setItem('username', response.user.username);
+          this.successMessage = 'Logueo exitoso';
+          this.errorMessage = '';
+          this.router.navigate(['/home']);
+        } else {
+          this.errorMessage = 'Credenciales inválidas o respuesta inesperada';
+          this.successMessage = '';
+        }
+      },
+      error: (err) => {
+        console.error('Login error', err);
+        this.errorMessage = 'Error en el logueo';
+        this.successMessage = '';
+      }
+    });
   }
-   register() {
-  this.authService.register(this.username, this.email, this.password).subscribe({
-    next: (response) => {
-      console.log('Registration successful', response);
-      this.successMessage = 'Registro exitoso';
-      this.errorMessage = '';
-       // Guarda estado
-      localStorage.setItem('user', JSON.stringify(response.user));
-      console.log('Redirigiendo a home');
-      this.router.navigate(['/home']); // Redirección
-    },
-    error: (err) => {
-      console.error('Registration error', err);
-      this.errorMessage = 'Error en el registro';
-      this.successMessage = '';
-    }
-  });
+
+  register() {
+    this.authService.register(this.username, this.email, this.password).subscribe({
+      next: (response) => {
+        console.log('Registration successful response:', response);
+
+        if (response && response.id) {
+          localStorage.setItem('userId', response.id);
+          localStorage.setItem('username', response.username);
+          this.successMessage = 'Registro exitoso';
+          this.errorMessage = '';
+          this.router.navigate(['/home']);
+        } else if (response && response.user && response.user.id) {
+          localStorage.setItem('userId', response.user.id);
+          localStorage.setItem('username', response.user.username);
+          this.successMessage = 'Registro exitoso';
+          this.errorMessage = '';
+          this.router.navigate(['/home']);
+        } else {
+          this.errorMessage = 'Error en el registro o respuesta inesperada';
+          this.successMessage = '';
+        }
+      },
+      error: (err) => {
+        console.error('Registration error', err);
+        this.errorMessage = 'Error en el registro';
+        this.successMessage = '';
+      }
+    });
   }
 }

@@ -164,6 +164,26 @@
   transform: translateY(-3px);
 }
 
+.puntuacion-final {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.4em;
+  color: #1565c0;
+}
+
+.puntuacion-final h2 {
+  color: #2e7d32;
+}
+
+.guardando-puntuacion {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1976d2; /* Azul agradable */
+  text-align: center;
+  margin: 20px 0;
+  animation: pulse 1.5s infinite;
+}
+
 /* Animaciones */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -185,3 +205,16 @@
     background-color: #a7ffeb; 
   }
 }
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

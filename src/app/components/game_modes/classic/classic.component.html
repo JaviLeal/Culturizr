@@ -38,6 +38,9 @@
             <p>Respuesta correcta: <strong>{{ r.respuestaCorrecta }}</strong></p>
         </li>
     </ul>
+    <div class="puntuacion-final">
+        <h3>Puntuación final: {{ totalScore }} puntos</h3>
+    </div>
     <div class="botones-final">
         <button (click)="reiniciarJuego()" class="btn-reiniciar">Volver a jugar</button>
         <button (click)="volverHome()" class="btn-home">Volver al inicio</button>
