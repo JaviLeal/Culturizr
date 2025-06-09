@@ -10,9 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class OneThemeComponent {
   categorias = [
-    { nombre: 'Deporte', color: '#FF6384', id: 1 },
+    { nombre: 'Deportes', color: '#FF6384', id: 5 },
     { nombre: 'Ciencia', color: '#36A2EB', id: 2 },
-    { nombre: 'Historia', color: '#FFCE56', id: 3 }
+    { nombre: 'Historia', color: '#FFCE56', id: 1 }
   ];
 
   tiradaConfirmada = false;
