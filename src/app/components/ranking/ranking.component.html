@@ -1,30 +1,33 @@
-<h2 class="ranking-titulo">Top 3 Jugadores</h2>
+<h2 class="ranking-titulo">🏆 Top 3 Mejores Jugadores 🏆</h2>
 
 <div class="podio-container">
-  <div class="podio puesto segundo" *ngIf="topPlayers.length > 1">
-    <div class="medalla">2</div>
+  <!-- Segundo lugar -->
+  <div class="podio puesto segundo animar">
+    <div class="medalla">🥈</div>
     <div class="info">
-      <div class="nombre">{{ topPlayers[1].username }}</div>
-      <div class="email">{{ topPlayers[1].email }}</div>
-      <div class="puntos">{{ topPlayers[1].score }} pts</div>
+      <div class="nombre">{{ topPlayers[1]?.username }}</div>
+      <div class="email">{{ topPlayers[1]?.email }}</div>
+      <div class="puntos">{{ topPlayers[1]?.score }} pts</div>
     </div>
   </div>
 
-  <div class="podio puesto primero" *ngIf="topPlayers.length > 0">
-    <div class="medalla">1</div>
+  <!-- Primer lugar -->
+  <div class="podio puesto primero animar">
+    <div class="medalla">🥇</div>
     <div class="info">
-      <div class="nombre">{{ topPlayers[0].username }}</div>
-      <div class="email">{{ topPlayers[0].email }}</div>
-      <div class="puntos">{{ topPlayers[0].score }} pts</div>
+      <div class="nombre">{{ topPlayers[0]?.username }}</div>
+      <div class="email">{{ topPlayers[0]?.email }}</div>
+      <div class="puntos">{{ topPlayers[0]?.score }} pts</div>
     </div>
   </div>
 
-  <div class="podio puesto tercero" *ngIf="topPlayers.length > 2">
-    <div class="medalla">3</div>
+  <!-- Tercer lugar -->
+  <div class="podio puesto tercero animar">
+    <div class="medalla">🥉</div>
     <div class="info">
-      <div class="nombre">{{ topPlayers[2].username }}</div>
-      <div class="email">{{ topPlayers[2].email }}</div>
-      <div class="puntos">{{ topPlayers[2].score }} pts</div>
+      <div class="nombre">{{ topPlayers[2]?.username }}</div>
+      <div class="email">{{ topPlayers[2]?.email }}</div>
+      <div class="puntos">{{ topPlayers[2]?.score }} pts</div>
     </div>
   </div>
 </div>

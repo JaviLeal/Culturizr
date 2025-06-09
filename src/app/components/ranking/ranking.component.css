@@ -1,10 +1,12 @@
 .ranking-titulo {
   text-align: center;
-  font-size: 2.8rem;
+  font-size: 3rem;
   margin-top: 40px;
-  font-weight: 700;
-  color: #222;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 800;
+  color: #007460;
+   font-family: var(--font-family);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 /* Contenedor general del podio */
@@ -12,83 +14,168 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 60px;
-  margin-top: 220px; /* Baja todo el podio */
-  max-width: 700px;
+  gap: 70px;
+  margin-top: 150px;
+  max-width: 750px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  height: 220px;
+  padding-bottom: 120px;
+  height: auto;
 }
 
 /* Estilos comunes podio */
 .podio {
-  background: #f0f0f0;
-  border-radius: 15px 15px 5px 5px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  width: 160px;
+  background: #ffffff;
+  border-radius: 20px 20px 10px 10px;
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.08),
+    inset 0 -4px 8px rgba(0,0,0,0.05);
+  width: 180px;
   text-align: center;
-  padding: 20px 15px 10px;
+  padding: 25px 20px 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
+  color: #34495e;
 }
 
-/* Medalla con número grande arriba */
+/* Hover con escala y sombra elegante */
+.podio:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    inset 0 -4px 10px rgba(0,0,0,0.08);
+}
+
+/* Medalla con número y efecto brillo */
 .medalla {
-  font-size: 3.5rem;
+  font-size: 3.8rem;
   font-weight: 900;
   color: white;
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
   border-radius: 50%;
-  background: gold;
-  margin: 0 auto 15px;
-  text-shadow: 0 0 8px rgba(0,0,0,0.3);
+  margin: 0 auto 20px;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.6),
+    0 0 30px rgba(255,255,255,0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.podio:hover .medalla {
+  box-shadow:
+    0 0 20px rgba(255,255,255,1),
+    0 0 50px rgba(255,255,255,0.7);
+}
+
+/* Colores medallas */
+.puesto.primero .medalla {
+  background: linear-gradient(135deg, #ffde59, #f9c60b);
+  box-shadow:
+    0 0 15px #ffde59,
+    0 0 35px #f9c60b;
+}
+
+.puesto.segundo .medalla {
+  background: linear-gradient(135deg, #d0d0d0, #a9a9a9);
+  box-shadow:
+    0 0 15px #d0d0d0,
+    0 0 35px #a9a9a9;
+}
+
+.puesto.tercero .medalla {
+  background: linear-gradient(135deg, #cc9966, #b87333);
+  box-shadow:
+    0 0 15px #cc9966,
+    0 0 35px #b87333;
 }
 
 /* Info de jugador */
 .info .nombre {
   font-weight: 700;
-  font-size: 1.3rem;
-  color: #222;
-  margin-bottom: 5px;
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 6px;
   overflow-wrap: anywhere;
+  letter-spacing: 0.5px;
 }
 
 .info .email {
-  font-size: 0.85rem;
-  color: #666;
+  font-size: 0.9rem;
+  color: #888888;
   font-style: italic;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .info .puntos {
-  font-weight: 800;
-  font-size: 1.15rem;
-  color: #111;
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #2a2a2a;
+  letter-spacing: 1px;
 }
 
-/* Podio específico para cada posición */
+/* Altura escalonada tipo podio con transform */
 .puesto.primero {
-  background: linear-gradient(135deg, #ffd700, #ffcc00);
-  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.7);
-  transform: translateY(-70px);
+  background: linear-gradient(135deg, #fff4b8, #ffec3d);
+  box-shadow:
+    0 15px 40px rgba(255, 235, 59, 0.7),
+    inset 0 -6px 12px rgba(255, 235, 59, 0.3);
+  transform: translateY(-90px);
   z-index: 3;
+  border: 2px solid #f9c60b;
 }
 
 .puesto.segundo {
-  background: linear-gradient(135deg, #c0c0c0, #a9a9a9);
-  box-shadow: 0 8px 20px rgba(192, 192, 192, 0.6);
-  transform: translateY(-30px);
+  background: linear-gradient(135deg, #e6e6e6, #b0b0b0);
+  box-shadow:
+    0 12px 35px rgba(176, 176, 176, 0.6),
+    inset 0 -5px 10px rgba(176, 176, 176, 0.3);
+  transform: translateY(-50px);
   z-index: 2;
+  border: 2px solid #a9a9a9;
 }
 
 .puesto.tercero {
-  background: linear-gradient(135deg, #cd7f32, #b87333);
-  box-shadow: 0 6px 15px rgba(205, 127, 50, 0.6);
+  background: linear-gradient(135deg, #d8b37f, #b47736);
+  box-shadow:
+    0 10px 30px rgba(180, 120, 40, 0.6),
+    inset 0 -4px 8px rgba(180, 120, 40, 0.3);
   transform: translateY(0);
   z-index: 1;
+  border: 2px solid #b87333;
+}
+
+/* Animaciones suaves */
+@keyframes subir {
+  0% {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animar {
+  animation: subir 0.7s ease-out forwards;
+  opacity: 0;
+}
+
+/* Retrasos personalizados */
+.puesto.primero.animar {
+  animation-delay: 1.5s;
+}
+.puesto.segundo.animar {
+  animation-delay: 1s;
+}
+.puesto.tercero.animar {
+  animation-delay: 0.5s;
 }
